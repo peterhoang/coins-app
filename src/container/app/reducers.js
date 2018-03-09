@@ -5,11 +5,15 @@ import {
   REQUEST_DATA_ERROR
 } from './actions'
 
-function coinData(
+function pageData(
   state = {
     isFetching: false,
     didInvalidate: false,
-    data: null
+    data: {
+      header: [],
+      coins: [],
+      captions: null
+    }
   },
   action
 ) {
@@ -38,6 +42,19 @@ function coinData(
   }
 }
 
-const rootReducer = combineReducers({coinData})
+function dataByPage(state = {}, action) {
+  switch (action.type) {
+    case REQUEST_DATA:
+    case REQUEST_DATA_SUCCESS:
+    case REQUEST_DATA_ERROR:
+      return Object.assign({}, state, {
+        [action.page]: pageData(state[action.page], action)
+      })
+    default:
+      return state
+  }
+}
+
+const rootReducer = combineReducers({dataByPage})
 
 export default rootReducer

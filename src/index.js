@@ -8,13 +8,8 @@ import registerServiceWorker from './registerServiceWorker';
 import configureStore from './configureStore'
 
 import './index.css';
-import * as API from './constants';
-import { fetchDataIfNeeded } from './container/app/actions';
 
 const store = configureStore();
-
-//store.dispatch(fetchDataIfNeeded(API.API_COINS_URL))
-//     .then(() => console.log(store.getState()));
 
 ReactDOM.render(
     <Provider store={store}>
