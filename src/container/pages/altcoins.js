@@ -5,10 +5,10 @@ import PropTypes from 'prop-types'
 import * as API from '../../constants'
 import CoinTable from '../../component/coinTable'
 
-class Home extends React.Component {
+class Altcoins extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(fetchDataIfNeeded(API.API_COINS_URL, API.API_COINS_URL))
+    dispatch(fetchDataIfNeeded(API.API_ALTCOINS_URL, API.API_ALTCOINS_URL))
   }
   
   render() {
@@ -19,30 +19,27 @@ class Home extends React.Component {
   }
 }
 
-Home.propTypes = {
+Altcoins.propTypes = {
   data: PropTypes.object.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
 }
  
 function mapStateToProps(state) {
   const { dataByPage } = state
-  const { isFetching, lastUpdated, data } = 
-    dataByPage[API.API_COINS_URL] || 
+  const { data } = 
+    dataByPage[API.API_ALTCOINS_URL] || 
     { 
-      isFetching: true, 
       data: { 
         header: [], 
-        coins: [] 
+        coins: [],
+        title: "",
+        captions: []
       } 
     }
 
   return {
-    data,
-    isFetching,
-    lastUpdated
+    data
   }
 }
  
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Altcoins)

@@ -12,7 +12,8 @@ function pageData(
     data: {
       header: [],
       coins: [],
-      captions: null
+      captions: [],
+      title: ""
     }
   },
   action
