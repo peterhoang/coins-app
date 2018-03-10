@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Coins App Prototype",
+  "name": "Coins App Sample driven by React",
   "icons": [
     {
       "src": "favicon.ico",

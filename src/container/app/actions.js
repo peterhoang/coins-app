@@ -1,5 +1,6 @@
 import fetch from 'cross-fetch'
 import { APIHOST } from '../../constants'
+import mockdata from '../../mock/coins'
 
 export const REQUEST_DATA = 'app/actions/REQUEST_DATA'
 export const REQUEST_DATA_SUCCESS = 'app/actions/REQUEST_DATA_SUCCESS'
@@ -44,12 +45,19 @@ function shouldFetchData(state, page) {
 export function fetchData(url, page) {
   return (dispatch) => {
     dispatch(requestData(page));
-    return fetch(`${APIHOST}${url}`)
-      .then(
-        response => response.json(),
-        error => dispatch(requestDataFail(error, page))
-      )
-      .then(json => dispatch(requestDataSuccess(json, page)))
+    
+    // I may have blocked myself from the data server oops...temp fix by using mock data
+    return dispatch(requestDataSuccess(mockdata, page))
+    
+    //  return fetch(`${APIHOST}${url}`)
+    //    .then(
+    //      response => response.json()
+    //    )
+    //    .then(
+    //      json => dispatch(requestDataSuccess(json, page)),
+    //      error => dispatch(requestDataFail(error, page))
+    //    )
+
   }
 }
 

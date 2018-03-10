@@ -35,7 +35,12 @@ function pageData(
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        data: null,
+        data: {
+          header: [],
+          coins: [],
+          captions: [],
+          title: "Oops!"
+        },
         lastUpdated: action.receivedAt
       })
     default:
